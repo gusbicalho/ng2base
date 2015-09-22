@@ -4,3 +4,6 @@
 # package.json, se quiser clonar o repositório basta usar
 # npm install para instalar todos eles.
 node_modules
+# O diretório .temp guardará apenas arquivos compilados durante
+# o desenvolvimento. Não é preciso gravá-lo no repositório.
+.temp
