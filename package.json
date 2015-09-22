@@ -19,5 +19,10 @@
     "vinyl-source-stream": "^1.1.0",
     "watchify": "^3.4.0",
     "yargs": "^3.25.0"
+  },
+  "dependencies": {
+    "angular2": "^2.0.0-alpha.37",
+    "reflect-metadata": "^0.1.2",
+    "zone.js": "^0.5.5"
   }
 }
