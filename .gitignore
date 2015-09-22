@@ -1,0 +1,6 @@
+# .gitignore
+# Não guarde os módulos instalados do npm no repositório.
+# Como a lista de módulos necessários fica gravada no arquivo
+# package.json, se quiser clonar o repositório basta usar
+# npm install para instalar todos eles.
+node_modules
