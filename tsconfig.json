@@ -1,1 +1,12 @@
-{}
+{
+  "compilerOptions": {
+    "target": "ES5",
+    "module": "commonjs",
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "newLine": "LF"
+  },
+  "files": [
+    "src/scripts/app.ts"
+  ]
+}
