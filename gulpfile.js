@@ -11,8 +11,10 @@ var watchify = require('watchify');
 // source: transforma o output do browserify em um objeto que
 // o gulp consegue manipular
 var source = require('vinyl-source-stream');
+// Deleta arquivos
+var del = require('del');
 
-gulp.task('dev', ['dev-watchify', 'dev-serve']);
+gulp.task('dev', ['dev-watchify', 'dev-serve', 'dev-watch-styles']);
 
 gulp.task('dev-serve', function() {
   log('Iniciando servidor: [' +
@@ -53,6 +55,23 @@ gulp.task('dev-watchify', function() {
   }
 });
 
+gulp.task('dev-styles-clean', function(cb) {
+  clean([config.temp + '**/*.css'], cb);
+});
+gulp.task('dev-styles', ['dev-styles-clean'], function() {
+  log('Compilando Sass -> CSS');
+  return gulp
+    .src(config.sass)
+    .pipe(plugins.plumber())
+    .pipe(plugins.sass().on('error', plugins.sass.logError))
+    .pipe(plugins.autoprefixer({browsers: ['last 2 version', '> 5%']}))
+    .pipe(gulp.dest(config.temp))
+    .pipe(plugins.connect.reload());
+});
+gulp.task('dev-watch-styles', ['dev-styles'], function() {
+    gulp.watch([config.sass], ['dev-styles']);
+});
+
 ///////////////////////////////////////
 
 function log(msg) {
@@ -65,4 +84,12 @@ function log(msg) {
   } else {
     plugins.util.log(plugins.util.colors.blue(msg));
   }
+}
+
+function clean(path, done) {
+    log('Limpando: ' + plugins.util.colors.blue(path));
+    del(path)
+      .then(
+        function(paths) { done(null, paths); },
+        function(err) { done(err); });
 }

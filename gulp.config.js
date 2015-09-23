@@ -17,6 +17,11 @@ module.exports = function() {
     tsconfig: tsconfig,
     /** Nome do bundle gerado pelo browserify */
     jsBundle: 'bundle.js',
+    /** Arquivos Sass */
+    sass: [
+      src + '**/*.scss',
+      src + '**/*.sass'
+    ],
     /** index do app */
     index: src + 'index.html',
     /** Porta do servidor de dev */
@@ -24,7 +29,9 @@ module.exports = function() {
     /** Recarregar a página se algum desses arquivos mudar */
     watchReload: [
       src + '**/*',
-      '!' + src + '**/*.ts'
+      '!' + src + '**/*.ts',
+      '!' + src + '**/*.scss',
+      '!' + src + '**/*.sass'
     ],
   };
 
